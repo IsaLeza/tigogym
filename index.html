@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TIGO — Personal Training, Montréal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F2EEE7;
+    --cream-2:#E8E2D6;
+    --ink:#0E0D0C;
+    --ink-2:#1A1816;
+    --muted:#6E6A63;
+    --line:#1f1d1b;
+    --line-light:#cfc8b9;
+    --accent:oklch(0.54 0.17 295);
+    --accent-soft:oklch(0.78 0.10 295);
+    --hot:#ED4F1C;
+    --maxw:1440px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Archivo",system-ui,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"ss01","cv11";
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#fff}
+
+  /* Type */
+  .display{
+    font-family:"Archivo",sans-serif;
+    font-weight:800;
+    letter-spacing:-0.045em;
+    line-height:0.86;
+    text-transform:uppercase;
+  }
+  .serif{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;letter-spacing:-0.01em}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:500}
+  .eyebrow{
+    font-family:"JetBrains Mono",monospace;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .ink-bg{background:var(--ink);color:var(--cream)}
+  .ink-bg .eyebrow{color:#a09a8e}
+  .ink-bg ::selection{background:var(--accent);color:#fff}
+
+  /* Layout helpers */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  .row{display:flex}
+  .grid{display:grid}
+
+  /* Nav */
+  nav.top{
+    position:sticky;top:0;z-index:60;
+    background:rgba(242,238,231,0.82);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(14,13,12,0.08);
+  }
+  nav.top .inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-weight:800;letter-spacing:-0.02em;font-size:18px;
+  }
+  .brand .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 4px rgba(115,89,200,0.18);
+  }
+  nav.top ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+  nav.top ul a{
+    color:var(--ink);text-decoration:none;font-size:13.5px;font-weight:500;
+    opacity:0.75;transition:opacity .15s;
+  }
+  nav.top ul a:hover{opacity:1}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .lang{
+    display:inline-flex;align-items:center;
+    border:1px solid rgba(14,13,12,0.18);
+    border-radius:999px;padding:3px;font-size:11.5px;font-weight:600;
+    font-family:"JetBrains Mono",monospace;letter-spacing:0.06em;
+  }
+  .lang button{
+    border:0;background:transparent;cursor:pointer;
+    padding:5px 11px;border-radius:999px;color:var(--ink);
+    font:inherit;letter-spacing:inherit;
+  }
+  .lang button.on{background:var(--ink);color:var(--cream)}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--ink);color:var(--cream);
+    border:0;border-radius:999px;
+    padding:12px 18px 12px 22px;font:inherit;font-weight:600;font-size:13.5px;
+    cursor:pointer;text-decoration:none;
+    transition:transform .2s, background .2s;
+  }
+  .btn:hover{transform:translateY(-1px);background:var(--accent)}
+  .btn .arr{
+    width:22px;height:22px;border-radius:50%;
+    background:var(--cream);color:var(--ink);
+    display:inline-grid;place-items:center;font-size:12px;
+  }
+  .btn.ghost{
+    background:transparent;color:var(--ink);
+    border:1px solid rgba(14,13,12,0.2);
+  }
+  .btn.ghost:hover{background:var(--ink);color:var(--cream)}
+  .btn.light{background:var(--cream);color:var(--ink)}
+  .btn.light:hover{background:var(--accent);color:#fff}
+  .btn.light .arr{background:var(--ink);color:var(--cream)}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:28px 0 0;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:40px;
+    align-items:end;
+    min-height: calc(100vh - 64px - 80px);
+  }
+  .hero h1{
+    font-family:"Archivo",sans-serif;
+    font-weight:800;
+    font-size:clamp(64px, 13.5vw, 232px);
+    line-height:0.84;
+    letter-spacing:-0.05em;
+    text-transform:uppercase;
+    margin:0;
+  }
+  .hero h1 .em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;letter-spacing:-0.02em;text-transform:none}
+  .hero h1 .em-purple{color:var(--accent)}
+  .hero-meta{
+    display:flex;flex-direction:column;gap:24px;
+    padding-bottom:20px;
+  }
+  .hero-photo{
+    position:relative;
+    aspect-ratio: 3/4;
+    border-radius:6px;
+    overflow:hidden;
+    background:#222;
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero-photo .tag{
+    position:absolute;top:18px;left:18px;
+    background:rgba(14,13,12,0.6);backdrop-filter:blur(10px);
+    color:var(--cream);
+    padding:8px 12px;border-radius:999px;
+    font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:0.15em;
+    text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .hero-photo .tag::before{
+    content:"";width:7px;height:7px;border-radius:50%;background:#5BFF8E;
+    box-shadow:0 0 0 4px rgba(91,255,142,0.2);
+  }
+  .hero-photo .stat{
+    position:absolute;
+    background:rgba(14,13,12,0.72);
+    color:var(--cream);
+    padding:14px 16px;
+    border-radius:6px;
+    backdrop-filter:blur(10px);
+    min-width:160px;
+  }
+  .hero-photo .stat .k{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#a09a8e}
+  .hero-photo .stat .v{font-size:28px;font-weight:800;letter-spacing:-0.03em;line-height:1}
+  .hero-photo .stat .v small{font-size:14px;opacity:0.7;font-weight:500}
+  .hero-photo .stat.s1{bottom:18px;left:18px}
+  .hero-photo .stat.s2{top:18px;right:18px;text-align:right}
+
+  .hero-bottom{
+    display:grid;grid-template-columns:1fr 1fr 1fr 1fr;
+    border-top:1px solid rgba(14,13,12,0.15);
+    margin-top:48px;
+    padding:22px 0 28px;
+    gap:20px;
+  }
+  .hero-bottom .cell{display:flex;flex-direction:column;gap:6px}
+  .hero-bottom .cell .lbl{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+  .hero-bottom .cell .val{font-size:15.5px;font-weight:500;letter-spacing:-0.005em;line-height:1.3}
+
+  .hero-side{
+    display:flex;flex-direction:column;justify-content:space-between;
+    height:100%;
+  }
+  .hero-side .lede{
+    font-size:18px;line-height:1.45;max-width:380px;
+    color:var(--ink);
+  }
+  .hero-side .lede b{font-weight:600}
+  .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+
+  /* Marquee */
+  .marquee{
+    border-top:1px solid rgba(14,13,12,0.15);
+    border-bottom:1px solid rgba(14,13,12,0.15);
+    overflow:hidden;
+    background:var(--cream);
+  }
+  .marquee-track{
+    display:flex;gap:48px;
+    padding:22px 0;
+    white-space:nowrap;
+    animation:scroll 38s linear infinite;
+    width:max-content;
+  }
+  .marquee span{
+    font-family:"Archivo",sans-serif;font-weight:800;
+    font-size:38px;letter-spacing:-0.03em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:48px;
+  }
+  .marquee span::after{
+    content:"";width:14px;height:14px;background:var(--accent);border-radius:50%;
+    display:inline-block;
+  }
+  .marquee em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;color:var(--accent)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* About */
+  section{padding:120px 0}
+  .section-head{
+    display:grid;grid-template-columns:1fr 2fr;gap:40px;
+    margin-bottom:64px;align-items:start;
+  }
+  .section-head .num{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:0.2em;color:var(--muted)}
+  .section-head h2{
+    font-family:"Archivo",sans-serif;font-weight:800;
+    font-size:clamp(40px, 5.6vw, 88px);
+    line-height:0.92;letter-spacing:-0.04em;
+    text-transform:uppercase;margin:0;
+  }
+  .section-head h2 .em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-0.015em}
+
+  .about-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:start;
+  }
+  .about-copy p{
+    font-size:18px;line-height:1.55;margin:0 0 20px;color:var(--ink);
+    max-width:560px;
+  }
+  .about-copy .pull{
+    font-family:"Instrument Serif",serif;
+    font-style:italic;
+    font-size:34px;line-height:1.15;letter-spacing:-0.01em;
+    margin:32px 0;color:var(--ink);
+    border-left:2px solid var(--accent);
+    padding-left:22px;
+  }
+  .credentials{
+    margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:18px;
+    border-top:1px solid rgba(14,13,12,0.15);padding-top:20px;
+  }
+  .credentials .c{display:flex;flex-direction:column;gap:4px}
+  .credentials .c .y{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.12em;color:var(--muted)}
+  .credentials .c .t{font-size:14.5px;font-weight:500}
+
+  .about-stats{
+    display:grid;grid-template-columns:1fr 1fr;gap:18px;
+  }
+  .about-stats .stat{
+    border:1px solid rgba(14,13,12,0.15);
+    border-radius:12px;padding:24px 22px;background:rgba(255,255,255,0.4);
+    display:flex;flex-direction:column;gap:6px;
+    transition:all .2s;
+  }
+  .about-stats .stat:hover{border-color:var(--accent);background:#fff}
+  .about-stats .stat.big{grid-column:span 2;background:var(--ink);color:var(--cream);border:0}
+  .about-stats .stat.big .v{color:var(--accent-soft)}
+  .about-stats .stat .k{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+  .about-stats .stat.big .k{color:#a09a8e}
+  .about-stats .stat .v{font-size:64px;font-weight:800;letter-spacing:-0.045em;line-height:1}
+  .about-stats .stat.big .v{font-size:96px}
+  .about-stats .stat .d{font-size:13.5px;color:var(--muted);max-width:240px;line-height:1.4}
+  .about-stats .stat.big .d{color:#cfc8b9;max-width:380px;font-size:14.5px}
+
+  /* Programs */
+  .programs{background:var(--ink);color:var(--cream)}
+  .programs .section-head .num{color:#a09a8e}
+  .programs .section-head h2{color:var(--cream)}
+  .programs-grid{
+    display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .program{
+    background:var(--ink);
+    padding:36px 32px 32px;
+    display:flex;flex-direction:column;gap:24px;
+    min-height:520px;
+    position:relative;
+    transition:background .25s;
+  }
+  .program:hover{background:#171513}
+  .program .top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .program .num{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.2em;color:#a09a8e}
+  .program .pill{
+    font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0.15em;
+    padding:5px 9px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);
+    text-transform:uppercase;color:#cfc8b9;
+  }
+  .program .pill.hot{border-color:var(--accent);color:var(--accent-soft)}
+  .program h3{
+    font-family:"Archivo",sans-serif;font-weight:800;
+    font-size:42px;letter-spacing:-0.035em;line-height:0.92;
+    text-transform:uppercase;margin:0;
+  }
+  .program h3 .em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-0.01em;color:var(--accent-soft)}
+  .program p{font-size:15px;line-height:1.5;color:#cfc8b9;margin:0;max-width:340px}
+  .program ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(255,255,255,0.1);padding-top:20px}
+  .program li{font-size:13.5px;display:flex;gap:10px;align-items:flex-start;color:#e8e2d6}
+  .program li::before{content:"+";color:var(--accent-soft);font-weight:700;flex-shrink:0;font-family:"JetBrains Mono",monospace}
+  .program .price{
+    margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;
+    border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;
+  }
+  .program .price .amt{font-size:34px;font-weight:800;letter-spacing:-0.03em;line-height:1}
+  .program .price .amt small{font-size:13px;font-weight:500;color:#a09a8e}
+  .program .arrow{
+    width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,0.25);
+    display:grid;place-items:center;font-size:16px;cursor:pointer;
+    transition:all .2s;
+  }
+  .program:hover .arrow{background:var(--accent);border-color:var(--accent);transform:rotate(-45deg)}
+
+  /* Approach / Method */
+  .method-grid{
+    display:grid;grid-template-columns:repeat(4, 1fr);gap:24px;
+  }
+  .method{
+    border:1px solid rgba(14,13,12,0.15);
+    border-radius:12px;
+    padding:28px 24px;
+    background:rgba(255,255,255,0.4);
+    display:flex;flex-direction:column;gap:16px;
+    min-height:280px;
+    position:relative;
+    overflow:hidden;
+  }
+  .method .step{
+    font-family:"Instrument Serif",serif;font-style:italic;
+    font-size:78px;line-height:1;color:var(--accent);
+    letter-spacing:-0.04em;
+  }
+  .method h4{
+    font-family:"Archivo",sans-serif;font-weight:700;
+    font-size:22px;letter-spacing:-0.02em;text-transform:uppercase;
+    margin:0;
+  }
+  .method p{font-size:14px;line-height:1.5;margin:0;color:var(--muted)}
+
+  /* Stats Strip */
+  .strip{
+    background:var(--ink);color:var(--cream);
+    padding:80px 0;
+  }
+  .strip-grid{
+    display:grid;grid-template-columns:repeat(4, 1fr);gap:24px;
+  }
+  .strip-grid .s{display:flex;flex-direction:column;gap:8px;border-left:1px solid rgba(255,255,255,0.15);padding-left:22px}
+  .strip-grid .s:first-child{border-left:0;padding-left:0}
+  .strip-grid .s .v{
+    font-family:"Archivo";font-weight:800;font-size:88px;line-height:0.9;letter-spacing:-0.045em;
+  }
+  .strip-grid .s .v .acc{color:var(--accent-soft)}
+  .strip-grid .s .v sup{font-size:32px;vertical-align:top;font-weight:700;color:var(--accent-soft)}
+  .strip-grid .s .l{font-size:13.5px;color:#cfc8b9;line-height:1.4;max-width:200px}
+
+  /* Testimonials */
+  .testimonials{background:var(--cream)}
+  .testi-row{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;
+  }
+  .quote{
+    font-family:"Instrument Serif",serif;font-style:italic;
+    font-size:clamp(36px,4.4vw,64px);line-height:1.05;letter-spacing:-0.02em;
+    margin:0 0 32px;color:var(--ink);
+  }
+  .quote::before{content:"“";color:var(--accent);font-size:1em;margin-right:0.05em}
+  .quote::after{content:"”";color:var(--accent)}
+  .testi-meta{display:flex;align-items:center;gap:16px;border-top:1px solid rgba(14,13,12,0.15);padding-top:20px}
+  .testi-meta .ph{
+    width:56px;height:56px;border-radius:50%;
+    background:linear-gradient(135deg,#444,#222);
+    color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px;
+  }
+  .testi-meta .who{display:flex;flex-direction:column}
+  .testi-meta .who b{font-weight:600;font-size:15px}
+  .testi-meta .who span{font-size:13px;color:var(--muted)}
+  .testi-cards{display:flex;flex-direction:column;gap:16px}
+  .testi-card{
+    border:1px solid rgba(14,13,12,0.15);border-radius:12px;
+    padding:22px;background:#fff;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .testi-card p{margin:0;font-size:15px;line-height:1.5}
+  .testi-card .foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted);font-family:"JetBrains Mono",monospace;letter-spacing:0.08em;text-transform:uppercase}
+  .stars{color:var(--accent);letter-spacing:2px;font-size:13px}
+
+  /* Schedule */
+  .schedule{background:var(--ink);color:var(--cream)}
+  .sched-grid{
+    display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:start;
+  }
+  .sched-cal{
+    border:1px solid rgba(255,255,255,0.12);border-radius:14px;
+    overflow:hidden;background:#171513;
+  }
+  .sched-cal .head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .sched-cal .head .month{font-weight:700;font-size:16px;letter-spacing:-0.01em}
+  .sched-cal .head .ctrl{display:flex;gap:6px}
+  .sched-cal .head .ctrl span{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,0.18);display:grid;place-items:center;font-size:13px;cursor:pointer}
+  .sched-cal .body{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
+  .sched-cal .body .dn{
+    text-align:center;padding:14px 0;font-family:"JetBrains Mono",monospace;font-size:10.5px;
+    letter-spacing:0.15em;color:#a09a8e;border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .sched-cal .body .day{
+    aspect-ratio:1.2/1;display:grid;place-items:center;font-size:14px;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    border-right:1px solid rgba(255,255,255,0.05);
+    color:#cfc8b9;cursor:pointer;position:relative;
+    transition:all .15s;
+  }
+  .sched-cal .body .day:hover{background:rgba(255,255,255,0.04);color:#fff}
+  .sched-cal .body .day.dim{color:#54514c}
+  .sched-cal .body .day.has::after{
+    content:"";position:absolute;bottom:8px;width:5px;height:5px;border-radius:50%;background:var(--accent)
+  }
+  .sched-cal .body .day.sel{background:var(--accent);color:#fff;font-weight:700;border-radius:0}
+  .sched-cal .body .day.sel::after{background:#fff}
+  .sched-slots{padding:22px 24px;border-top:1px solid rgba(255,255,255,0.1)}
+  .sched-slots .lbl{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:0.15em;color:#a09a8e;text-transform:uppercase;margin-bottom:14px}
+  .slots{display:flex;gap:8px;flex-wrap:wrap}
+  .slot{
+    padding:10px 14px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;
+    font-family:"JetBrains Mono",monospace;font-size:12.5px;cursor:pointer;
+    transition:all .15s;
+  }
+  .slot:hover{border-color:var(--accent-soft);color:#fff}
+  .slot.taken{opacity:0.35;text-decoration:line-through;cursor:not-allowed}
+  .slot.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+
+  .sched-side{display:flex;flex-direction:column;gap:20px}
+  .sched-side h3{
+    font-family:"Archivo";font-weight:800;font-size:48px;line-height:0.92;
+    letter-spacing:-0.035em;text-transform:uppercase;margin:0 0 8px;
+  }
+  .sched-side h3 .em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-0.01em;color:var(--accent-soft)}
+  .sched-side p{font-size:15px;line-height:1.55;color:#cfc8b9;max-width:380px}
+  .info-list{list-style:none;margin:18px 0 0;padding:18px 0 0;border-top:1px solid rgba(255,255,255,0.12);display:flex;flex-direction:column;gap:14px}
+  .info-list li{display:grid;grid-template-columns:120px 1fr;gap:14px;font-size:14px;align-items:center}
+  .info-list li .k{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:0.15em;color:#a09a8e;text-transform:uppercase}
+
+  /* FAQ */
+  .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+  .faq{
+    border-top:1px solid rgba(14,13,12,0.15);
+    padding:22px 0;
+    cursor:pointer;
+  }
+  .faq summary{
+    list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;
+    font-size:21px;font-weight:600;letter-spacing:-0.015em;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pl{
+    width:32px;height:32px;border-radius:50%;border:1px solid rgba(14,13,12,0.2);
+    display:grid;place-items:center;font-size:14px;flex-shrink:0;transition:all .2s;
+  }
+  .faq[open] summary .pl{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg)}
+  .faq p{margin:14px 0 4px;color:var(--muted);font-size:15px;line-height:1.55;max-width:520px}
+
+  /* Contact */
+  .contact{background:var(--accent);color:#fff;position:relative;overflow:hidden}
+  .contact ::selection{background:var(--ink);color:var(--accent-soft)}
+  .contact .big{
+    font-family:"Archivo";font-weight:800;
+    font-size:clamp(72px, 12vw, 200px);line-height:0.85;letter-spacing:-0.05em;
+    text-transform:uppercase;margin:0;
+  }
+  .contact .big .em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-0.02em}
+  .contact-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;
+    margin-top:64px;border-top:1px solid rgba(255,255,255,0.3);padding-top:40px;
+  }
+  .contact-grid .col h5{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 14px;opacity:0.75}
+  .contact-grid .col p{margin:0 0 4px;font-size:18px;font-weight:500}
+  .contact-grid .col a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.5)}
+
+  .contact-cta{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+  /* Footer */
+  footer{background:var(--ink);color:var(--cream);padding:60px 0 30px}
+  footer .top{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:40px}
+  footer h6{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;margin:0 0 16px;color:#a09a8e;font-weight:500}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  footer ul a{color:#cfc8b9;text-decoration:none;font-size:14px}
+  footer ul a:hover{color:var(--accent-soft)}
+  footer .name{font-family:"Archivo";font-weight:800;font-size:42px;line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase}
+  footer .name .em{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;text-transform:none;color:var(--accent-soft)}
+  footer .meta{font-size:13px;color:#a09a8e;margin-top:14px;line-height:1.5;max-width:280px}
+  footer .bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#a09a8e}
+
+  /* Tags hide for inactive lang */
+  [data-en],[data-fr]{display:contents}
+  html[lang="en"] [data-fr]{display:none !important}
+  html[lang="fr"] [data-en]{display:none !important}
+  html[lang="en"] .lang-only-fr{display:none}
+  html[lang="fr"] .lang-only-en{display:none}
+
+  /* Mobile */
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr;gap:32px;min-height:auto;padding-bottom:20px}
+    .hero-bottom{grid-template-columns:1fr 1fr;margin-top:24px}
+    .about-grid{grid-template-columns:1fr;gap:40px}
+    .programs-grid{grid-template-columns:1fr}
+    .method-grid{grid-template-columns:1fr 1fr}
+    .strip-grid{grid-template-columns:1fr 1fr}
+    .testi-row{grid-template-columns:1fr}
+    .sched-grid{grid-template-columns:1fr}
+    .faq-grid{grid-template-columns:1fr}
+    .section-head{grid-template-columns:1fr;gap:16px}
+    .contact-grid{grid-template-columns:1fr}
+    nav.top ul{display:none}
+    footer .top{grid-template-columns:1fr 1fr;gap:32px 20px}
+    section{padding:80px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- =================== NAV =================== -->
+<nav class="top" data-screen-label="Nav">
+  <div class="wrap inner">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>TIGO<span style="color:var(--accent);font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;margin-left:2px">/</span>MTL</span>
+    </div>
+    <ul>
+      <li><a href="#about"><span data-en>Approach</span><span data-fr>Approche</span></a></li>
+      <li><a href="#programs"><span data-en>Programs</span><span data-fr>Programmes</span></a></li>
+      <li><a href="#method"><span data-en>Method</span><span data-fr>Méthode</span></a></li>
+      <li><a href="#testimonials"><span data-en>Results</span><span data-fr>Résultats</span></a></li>
+      <li><a href="#schedule"><span data-en>Schedule</span><span data-fr>Horaire</span></a></li>
+      <li><a href="#faq"><span data-en>FAQ</span><span data-fr>FAQ</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang" role="tablist" aria-label="Language">
+        <button class="on" data-set-lang="en">EN</button>
+        <button data-set-lang="fr">FR</button>
+      </div>
+      <a href="#contact" class="btn">
+        <span data-en>Book a session</span><span data-fr>Réserver</span>
+        <span class="arr">↗</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- =================== HERO =================== -->
+<header class="hero" data-screen-label="01 Hero">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px">
+      <div class="eyebrow">
+        <span data-en>Personal training · Montréal · Est. 2017</span>
+        <span data-fr>Entraîneur personnel · Montréal · Depuis 2017</span>
+      </div>
+      <div class="eyebrow">
+        <span data-en>Now booking — Spring '26 cohort</span>
+        <span data-fr>Inscriptions ouvertes — Cohorte Printemps '26</span>
+      </div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-meta">
+        <h1>
+          <span data-en>Build the<br><span class="em em-purple">strongest</span><br>version of you.</span>
+          <span data-fr>Devenez la<br><span class="em em-purple">meilleure</span><br>version de vous.</span>
+        </h1>
+      </div>
+
+      <div class="hero-side">
+        <div></div>
+        <div>
+          <div class="hero-photo">
+            <img src="trainer-hero.png" alt="Coach Tigo">
+            <div class="tag"><span data-en>Taking new clients</span><span data-fr>Nouveaux clients acceptés</span></div>
+            
+            <div class="stat s1">
+              <div class="k"><span data-en>Clients coached</span><span data-fr>Clients entraînés</span></div>
+              <div class="v">340<small>+</small></div>
+            </div>
+          </div>
+          <p class="lede" style="margin-top:22px">
+            <span data-en><b>Hi, I'm Tigo.</b> A NASM-certified coach helping busy Montrealers build muscle, drop fat and feel unbreakable — through training that actually fits your week.</span>
+            <span data-fr><b>Salut, c'est Tigo.</b> Coach certifié NASM, j'aide les Montréalais occupés à prendre du muscle, perdre du gras et se sentir invincibles — avec un programme adapté à votre semaine.</span>
+          </p>
+          <div class="hero-actions">
+            <a href="#programs" class="btn">
+              <span data-en>See programs</span><span data-fr>Voir les programmes</span>
+              <span class="arr">↗</span>
+            </a>
+            <a href="#contact" class="btn ghost">
+              <span data-en>Free consult — 30 min</span><span data-fr>Consult. gratuite — 30 min</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="cell">
+        <span class="lbl">01 — <span data-en>Location</span><span data-fr>Lieu</span></span>
+        <span class="val"><span data-en>Mile-End Studio<br>5570 Av. du Parc</span><span data-fr>Studio Mile-End<br>5570 av. du Parc</span></span>
+      </div>
+      <div class="cell">
+        <span class="lbl">02 — <span data-en>Hours</span><span data-fr>Heures</span></span>
+        <span class="val"><span data-en>Mon–Fri · 06:00–21:00<br>Sat · 08:00–14:00</span><span data-fr>Lun–Ven · 06:00–21:00<br>Sam · 08:00–14:00</span></span>
+      </div>
+      <div class="cell">
+        <span class="lbl">03 — <span data-en>Languages</span><span data-fr>Langues</span></span>
+        <span class="val"><span data-en>Coaching in EN, FR & ES</span><span data-fr>En EN, FR et ES</span></span>
+      </div>
+      <div class="cell">
+        <span class="lbl">04 — <span data-en>Specialties</span><span data-fr>Spécialités</span></span>
+        <span class="val"><span data-en>Hypertrophy · Fat loss<br>Athletic performance</span><span data-fr>Hypertrophie · Perte de gras<br>Performance athlétique</span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- =================== MARQUEE =================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span><span data-en>Strength</span><span data-fr>Force</span></span>
+    <span><em>Hypertrophy</em></span>
+    <span><span data-en>Fat loss</span><span data-fr>Perte de gras</span></span>
+    <span><em>Mobility</em></span>
+    <span><span data-en>Conditioning</span><span data-fr>Conditionnement</span></span>
+    <span><em>Nutrition</em></span>
+    <span><span data-en>Mindset</span><span data-fr>Mental</span></span>
+    <span><em>Recovery</em></span>
+    <!-- duplicate for loop -->
+    <span><span data-en>Strength</span><span data-fr>Force</span></span>
+    <span><em>Hypertrophy</em></span>
+    <span><span data-en>Fat loss</span><span data-fr>Perte de gras</span></span>
+    <span><em>Mobility</em></span>
+    <span><span data-en>Conditioning</span><span data-fr>Conditionnement</span></span>
+    <span><em>Nutrition</em></span>
+    <span><span data-en>Mindset</span><span data-fr>Mental</span></span>
+    <span><em>Recovery</em></span>
+  </div>
+</div>
+
+<!-- =================== ABOUT =================== -->
+<section id="about" data-screen-label="02 About">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">[ 01 / <span data-en>Approach</span><span data-fr>Approche</span> ]</div>
+      <h2>
+        <span data-en>Coaching that <span class="em">listens</span> before it programs.</span>
+        <span data-fr>Un coaching qui <span class="em">écoute</span> avant de programmer.</span>
+      </h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-copy">
+        <p>
+          <span data-en>I started in a basement gym in Saint-Michel with a borrowed bench and a notebook. Nine years and three hundred clients later, the philosophy hasn't changed: every body has a baseline, every life has a schedule, and every plan should respect both.</span>
+          <span data-fr>J'ai commencé dans un sous-sol à Saint-Michel avec un banc emprunté et un cahier. Neuf ans et trois cents clients plus tard, ma philosophie n'a pas changé : chaque corps a son point de départ, chaque vie a son horaire, et chaque plan doit respecter les deux.</span>
+        </p>
+        <div class="pull">
+          <span data-en>"You don't need more discipline. You need a plan that's actually yours."</span>
+          <span data-fr>« Vous n'avez pas besoin de plus de discipline. Vous avez besoin d'un plan qui est vraiment le vôtre. »</span>
+        </div>
+        <p>
+          <span data-en>Whether you're an executive squeezing in 5am sessions, a new parent rebuilding after pregnancy, or an athlete chasing a PR — the work starts the same way: a conversation, a movement screen, and a plan written for the next 12 weeks of <em>your</em> life.</span>
+          <span data-fr>Que vous soyez un cadre qui s'entraîne à 5h du matin, un nouveau parent qui se reconstruit après la grossesse, ou un athlète qui vise un record — le travail commence pareil : une conversation, un dépistage du mouvement, et un plan écrit pour les 12 prochaines semaines de <em>votre</em> vie.</span>
+        </p>
+
+        <div class="credentials">
+          <div class="c">
+            <span class="y">2018 — <span data-en>CERT.</span><span data-fr>CERT.</span></span>
+            <span class="t">NASM Certified Personal Trainer</span>
+          </div>
+          <div class="c">
+            <span class="y">2020 — <span data-en>CERT.</span><span data-fr>CERT.</span></span>
+            <span class="t">Precision Nutrition L1</span>
+          </div>
+          <div class="c">
+            <span class="y">2022 — <span data-en>CERT.</span><span data-fr>CERT.</span></span>
+            <span class="t">FRC Mobility Specialist</span>
+          </div>
+          <div class="c">
+            <span class="y">2024 — <span data-en>CERT.</span><span data-fr>CERT.</span></span>
+            <span class="t">Westside Barbell — Methods Course</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat big">
+          <span class="k"><span data-en>Average client retention</span><span data-fr>Rétention moyenne</span></span>
+          <span class="v">93<sup style="font-size:0.45em;color:var(--accent-soft)">%</sup></span>
+          <span class="d"><span data-en>Most clients stay for 12+ months. The plan keeps evolving — so does the body.</span><span data-fr>La plupart des clients restent 12+ mois. Le plan évolue — le corps aussi.</span></span>
+        </div>
+        <div class="stat">
+          <span class="k">/01</span>
+          <span class="v">9<small style="font-size:0.4em;color:var(--muted);font-weight:500">yrs</small></span>
+          <span class="d"><span data-en>Coaching experience</span><span data-fr>D'expérience en coaching</span></span>
+        </div>
+        <div class="stat">
+          <span class="k">/02</span>
+          <span class="v">340+</span>
+          <span class="d"><span data-en>Clients coached 1-on-1</span><span data-fr>Clients suivis en privé</span></span>
+        </div>
+        <div class="stat">
+          <span class="k">/03</span>
+          <span class="v">11k</span>
+          <span class="d"><span data-en>Sessions delivered to date</span><span data-fr>Séances dispensées à ce jour</span></span>
+        </div>
+        <div class="stat">
+          <span class="k">/04</span>
+          <span class="v">4.9<small style="font-size:0.45em;color:var(--muted);font-weight:500">/5</small></span>
+          <span class="d"><span data-en>Average client rating · 87 reviews</span><span data-fr>Note moyenne · 87 avis</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PROGRAMS =================== -->
+<section id="programs" class="programs" data-screen-label="03 Programs">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">[ 02 / <span data-en>Programs</span><span data-fr>Programmes</span> ]</div>
+      <h2>
+        <span data-en>Three ways to <span class="em" style="color:var(--accent-soft)">work together</span>.</span>
+        <span data-fr>Trois façons de <span class="em" style="color:var(--accent-soft)">travailler ensemble</span>.</span>
+      </h2>
+    </div>
+
+    <div class="programs-grid">
+      <article class="program">
+        <div class="top">
+          <span class="num">/01</span>
+          <span class="pill"><span data-en>Foundations</span><span data-fr>Fondations</span></span>
+        </div>
+        <h3><span data-en>Solo<br><span class="em">privé</span></span><span data-fr>Privé<br><span class="em">solo</span></span></h3>
+        <p>
+          <span data-en>One-on-one in the Mile-End studio. Every session built around you — your goals, your fascia, your week.</span>
+          <span data-fr>Privé au studio Mile-End. Chaque séance bâtie autour de vous — vos objectifs, votre corps, votre semaine.</span>
+        </p>
+        <ul>
+          <li><span data-en>2–4 sessions per week (60 min)</span><span data-fr>2–4 séances par semaine (60 min)</span></li>
+          <li><span data-en>Movement screen + InBody every 6 wk</span><span data-fr>Dépistage du mouvement + InBody chaque 6 sem.</span></li>
+          <li><span data-en>Custom programming in the app</span><span data-fr>Programmation sur mesure dans l'app</span></li>
+          <li><span data-en>Weekly check-in & form review</span><span data-fr>Suivi hebdo. + revue de technique</span></li>
+        </ul>
+        <div class="price">
+          <div>
+            <div class="amt">$<span>140</span><small> CAD / <span data-en>session</span><span data-fr>séance</span></small></div>
+          </div>
+          <div class="arrow" aria-label="Learn more">↗</div>
+        </div>
+      </article>
+
+      <article class="program" style="background:#171513">
+        <div class="top">
+          <span class="num">/02</span>
+          <span class="pill hot">★ <span data-en>Most chosen</span><span data-fr>Plus populaire</span></span>
+        </div>
+        <h3><span data-en>Body<br><span class="em">recomposition</span></span><span data-fr>Recompo<br><span class="em">corporelle</span></span></h3>
+        <p>
+          <span data-en>A 16-week build. Training, nutrition macros, sleep & stress — the whole stack, integrated.</span>
+          <span data-fr>Un programme de 16 semaines. Entraînement, macros, sommeil et stress — tout intégré.</span>
+        </p>
+        <ul>
+          <li><span data-en>3 in-person sessions / week</span><span data-fr>3 séances en personne / semaine</span></li>
+          <li><span data-en>Macros + meal architecture</span><span data-fr>Macros + architecture des repas</span></li>
+          <li><span data-en>Bi-weekly photo & DEXA tracking</span><span data-fr>Suivi photo + DEXA aux deux sem.</span></li>
+          <li><span data-en>Direct line to coach (text)</span><span data-fr>Accès direct au coach (texto)</span></li>
+          <li><span data-en>Recovery & mobility protocol</span><span data-fr>Protocole de récup. + mobilité</span></li>
+        </ul>
+        <div class="price">
+          <div>
+            <div class="amt">$<span>1,890</span><small> CAD / <span data-en>16 wk</span><span data-fr>16 sem.</span></small></div>
+          </div>
+          <div class="arrow" aria-label="Learn more">↗</div>
+        </div>
+      </article>
+
+      <article class="program">
+        <div class="top">
+          <span class="num">/03</span>
+          <span class="pill"><span data-en>Online</span><span data-fr>En ligne</span></span>
+        </div>
+        <h3><span data-en>Hybrid<br><span class="em">à distance</span></span><span data-fr>Hybride<br><span class="em">à distance</span></span></h3>
+        <p>
+          <span data-en>For clients outside Montréal, or who train at their own gym. Same depth, fully remote.</span>
+          <span data-fr>Pour clients hors-Montréal ou qui s'entraînent dans leur propre gym. Même profondeur, à distance.</span>
+        </p>
+        <ul>
+          <li><span data-en>Custom 4-week programming</span><span data-fr>Programmation sur mesure aux 4 sem.</span></li>
+          <li><span data-en>Video form review (48-hr turnaround)</span><span data-fr>Revue vidéo (réponse en 48 h)</span></li>
+          <li><span data-en>Weekly Zoom check-in (30 min)</span><span data-fr>Suivi Zoom hebdo. (30 min)</span></li>
+          <li><span data-en>Nutrition framework — habits-based</span><span data-fr>Cadre nutrition — basé sur habitudes</span></li>
+        </ul>
+        <div class="price">
+          <div>
+            <div class="amt">$<span>320</span><small> CAD / <span data-en>month</span><span data-fr>mois</span></small></div>
+          </div>
+          <div class="arrow" aria-label="Learn more">↗</div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =================== METHOD =================== -->
+<section id="method" data-screen-label="04 Method">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">[ 03 / <span data-en>Method</span><span data-fr>Méthode</span> ]</div>
+      <h2>
+        <span data-en>Four steps. <span class="em">No guesswork.</span></span>
+        <span data-fr>Quatre étapes. <span class="em">Sans deviner.</span></span>
+      </h2>
+    </div>
+
+    <div class="method-grid">
+      <div class="method">
+        <div class="step">i.</div>
+        <h4><span data-en>Listen</span><span data-fr>Écouter</span></h4>
+        <p><span data-en>60-min intake. We map your history, injuries, schedule and what success looks like in 12 weeks.</span><span data-fr>Bilan de 60 min. On cartographie l'historique, blessures, horaire et ce à quoi ressemble le succès dans 12 semaines.</span></p>
+      </div>
+      <div class="method">
+        <div class="step">ii.</div>
+        <h4><span data-en>Measure</span><span data-fr>Mesurer</span></h4>
+        <p><span data-en>FMS movement screen + InBody scan. We turn vague goals into numbers we can actually move.</span><span data-fr>Dépistage FMS + analyse InBody. On transforme des objectifs flous en chiffres qu'on peut bouger.</span></p>
+      </div>
+      <div class="method">
+        <div class="step">iii.</div>
+        <h4><span data-en>Build</span><span data-fr>Bâtir</span></h4>
+        <p><span data-en>Periodised programming, written for your week. Hypertrophy, strength and conditioning, in the right order.</span><span data-fr>Programmation périodisée, écrite pour votre semaine. Hypertrophie, force et conditionnement, dans le bon ordre.</span></p>
+      </div>
+      <div class="method">
+        <div class="step">iv.</div>
+        <h4><span data-en>Adjust</span><span data-fr>Ajuster</span></h4>
+        <p><span data-en>Weekly review. Sleep, soreness, work stress all change the plan. We adapt instead of pushing through.</span><span data-fr>Revue hebdo. Sommeil, courbatures, stress changent le plan. On s'adapte au lieu de forcer.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== STATS STRIP =================== -->
+<section class="strip" data-screen-label="05 Stats">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:48px">
+      <div class="num" style="color:#a09a8e">[ 04 / <span data-en>Numbers</span><span data-fr>Chiffres</span> ]</div>
+      <h2 style="color:var(--cream)">
+        <span data-en>Receipts. <span class="em" style="color:var(--accent-soft)">Not vibes.</span></span>
+        <span data-fr>Des preuves. <span class="em" style="color:var(--accent-soft)">Pas du vent.</span></span>
+      </h2>
+    </div>
+    <div class="strip-grid">
+      <div class="s">
+        <div class="v">+<span class="acc">11</span><sup>lb</sup></div>
+        <div class="l"><span data-en>Avg. lean mass gained — 16-week recompo cohort</span><span data-fr>Masse maigre gagnée en moy. — cohorte recompo 16 sem.</span></div>
+      </div>
+      <div class="s">
+        <div class="v">−<span class="acc">14</span><sup>lb</sup></div>
+        <div class="l"><span data-en>Avg. fat loss — first 12 weeks</span><span data-fr>Perte de gras moy. — 12 premières sem.</span></div>
+      </div>
+      <div class="s">
+        <div class="v">93<sup>%</sup></div>
+        <div class="l"><span data-en>Hit their 12-week goal — measured, not estimated</span><span data-fr>Atteignent leur objectif 12 sem. — mesuré, pas estimé</span></div>
+      </div>
+      <div class="s">
+        <div class="v">4.9<sup>/5</sup></div>
+        <div class="l"><span data-en>Across 87 reviews · Google + Trainerize</span><span data-fr>Sur 87 avis · Google + Trainerize</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== TESTIMONIALS =================== -->
+<section id="testimonials" class="testimonials" data-screen-label="06 Testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">[ 05 / <span data-en>Voices</span><span data-fr>Voix</span> ]</div>
+      <h2>
+        <span data-en>What clients <span class="em">actually</span> say.</span>
+        <span data-fr>Ce que les clients <span class="em">disent vraiment</span>.</span>
+      </h2>
+    </div>
+
+    <div class="testi-row">
+      <div>
+        <p class="quote">
+          <span data-en>I tried four trainers in three years. Tigo is the first one who actually <em style="font-family:'Instrument Serif';font-style:italic">read me</em> before writing a program. Down 18 lbs and squatting bodyweight for the first time at 41.</span>
+          <span data-fr>J'ai essayé quatre coachs en trois ans. Tigo est le premier qui m'a vraiment <em style="font-family:'Instrument Serif';font-style:italic">écoutée</em> avant d'écrire un programme. 18 lbs de moins et je squatte mon poids pour la première fois à 41 ans.</span>
+        </p>
+        <div class="testi-meta">
+          <div class="ph" style="background:linear-gradient(135deg,#7359C8,#3a2a78)">SC</div>
+          <div class="who">
+            <b>Sophie C.</b>
+            <span><span data-en>Lawyer · 14 months client</span><span data-fr>Avocate · cliente depuis 14 mois</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-cards">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            <span data-en>"Hit my first 405-lb deadlift in week 22. The programming is dead serious — the vibe in the studio is not."</span>
+            <span data-fr>« Premier soulevé de 405 lb à la semaine 22. La programmation est sérieuse — l'ambiance au studio ne l'est pas. »</span>
+          </p>
+          <div class="foot">
+            <span>Marc-André T. · Eng.</span>
+            <span>03 / 2026</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            <span data-en>"Postpartum, I felt like a stranger in my body. 16 weeks later I'm stronger than I was before pregnancy. He listens."</span>
+            <span data-fr>« Post-partum, je me sentais étrangère dans mon corps. 16 sem. plus tard je suis plus forte qu'avant la grossesse. Il écoute. »</span>
+          </p>
+          <div class="foot">
+            <span>Émilie R. · MD</span>
+            <span>01 / 2026</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            <span data-en>"6am sessions before court. Two years in, my back pain is gone and I haven't missed a week."</span>
+            <span data-fr>« Séances à 6h avant la cour. Deux ans plus tard, mon mal de dos a disparu et je n'ai pas manqué une semaine. »</span>
+          </p>
+          <div class="foot">
+            <span>David K. · Atty.</span>
+            <span>11 / 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== SCHEDULE =================== -->
+<section id="schedule" class="schedule" data-screen-label="07 Schedule">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num" style="color:#a09a8e">[ 06 / <span data-en>Booking</span><span data-fr>Réservation</span> ]</div>
+      <h2 style="color:var(--cream)">
+        <span data-en>Pick a slot.<br><span class="em" style="color:var(--accent-soft)">First one's on me.</span></span>
+        <span data-fr>Choisissez<br>un créneau.<br><span class="em" style="color:var(--accent-soft)">La première est offerte.</span></span>
+      </h2>
+    </div>
+
+    <div class="sched-grid">
+      <div class="sched-cal">
+        <div class="head">
+          <div class="month"><span data-en>May 2026</span><span data-fr>Mai 2026</span></div>
+          <div class="ctrl"><span>‹</span><span>›</span></div>
+        </div>
+        <div class="body">
+          <div class="dn">M</div><div class="dn">T</div><div class="dn">W</div><div class="dn">T</div><div class="dn">F</div><div class="dn">S</div><div class="dn">S</div>
+          <div class="day dim">28</div><div class="day dim">29</div><div class="day dim">30</div><div class="day">1</div><div class="day has">2</div><div class="day">3</div><div class="day">4</div>
+          <div class="day has">5</div><div class="day has">6</div><div class="day">7</div><div class="day has">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div>
+          <div class="day has">12</div><div class="day sel has">13</div><div class="day has">14</div><div class="day has">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div>
+          <div class="day has">19</div><div class="day">20</div><div class="day has">21</div><div class="day has">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div>
+          <div class="day has">26</div><div class="day has">27</div><div class="day">28</div><div class="day has">29</div><div class="day">30</div><div class="day">31</div><div class="day dim">1</div>
+        </div>
+        <div class="sched-slots">
+          <div class="lbl"><span data-en>Wednesday, May 13</span><span data-fr>Mercredi 13 mai</span> — 7 <span data-en>slots</span><span data-fr>créneaux</span></div>
+          <div class="slots">
+            <div class="slot">06:00</div>
+            <div class="slot taken">07:30</div>
+            <div class="slot on">09:00</div>
+            <div class="slot">10:30</div>
+            <div class="slot taken">12:00</div>
+            <div class="slot">13:30</div>
+            <div class="slot">17:00</div>
+            <div class="slot">18:30</div>
+            <div class="slot">20:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sched-side">
+        <h3>
+          <span data-en>30-min<br>free<br><span class="em">consult</span>.</span>
+          <span data-fr>Consult.<br>gratuite<br><span class="em">30 min</span>.</span>
+        </h3>
+        <p>
+          <span data-en>No commitment, no upsell. We talk about your goals, look at your week, and figure out if I'm the right coach for you. If I'm not, I'll point you to someone who is.</span>
+          <span data-fr>Aucun engagement, aucune vente forcée. On parle de vos objectifs, on regarde votre semaine et on détermine si je suis le bon coach pour vous. Sinon, je vous réfère à la bonne personne.</span>
+        </p>
+        <ul class="info-list">
+          <li><span class="k"><span data-en>Format</span><span data-fr>Format</span></span><span><span data-en>In-person at the studio · or video call</span><span data-fr>En personne au studio · ou par appel vidéo</span></span></li>
+          <li><span class="k"><span data-en>Duration</span><span data-fr>Durée</span></span><span><span data-en>30 min · runs over if you have questions</span><span data-fr>30 min · plus si vous avez des questions</span></span></li>
+          <li><span class="k"><span data-en>Bring</span><span data-fr>Apportez</span></span><span><span data-en>Recent training history (if any)</span><span data-fr>Historique d'entraînement récent (si applicable)</span></span></li>
+          <li><span class="k"><span data-en>Cost</span><span data-fr>Coût</span></span><span><span data-en>Free, full stop.</span><span data-fr>Gratuit, point.</span></span></li>
+        </ul>
+        <div style="margin-top:24px">
+          <a href="#contact" class="btn light">
+            <span data-en>Confirm 09:00, May 13</span><span data-fr>Confirmer 09:00, 13 mai</span>
+            <span class="arr">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FAQ =================== -->
+<section id="faq" data-screen-label="08 FAQ">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">[ 07 / FAQ ]</div>
+      <h2>
+        <span data-en>Things people<br><span class="em">always ask</span>.</span>
+        <span data-fr>Ce qu'on me<br><span class="em">demande tout le temps</span>.</span>
+      </h2>
+    </div>
+
+    <div class="faq-grid">
+      <div>
+        <details class="faq" open>
+          <summary><span data-en>I haven't trained in years. Is this for me?</span><span data-fr>Je n'ai pas entraîné depuis des années. Est-ce pour moi ?</span><span class="pl">+</span></summary>
+          <p><span data-en>Yes — most of my clients start exactly here. The first four weeks are mostly about getting movement back online and rebuilding tendons before we ever load heavy.</span><span data-fr>Oui — la plupart de mes clients partent exactement de là. Les quatre premières semaines servent surtout à retrouver le mouvement et reconstruire les tendons avant de charger lourd.</span></p>
+        </details>
+        <details class="faq">
+          <summary><span data-en>Do you do nutrition coaching?</span><span data-fr>Faites-vous du coaching nutrition ?</span><span class="pl">+</span></summary>
+          <p><span data-en>I do. I'm Precision Nutrition L1 certified. I don't write rigid meal plans — I build habit-based frameworks that survive a busy week, holidays and a Friday at the brewery.</span><span data-fr>Oui. Je suis certifié Precision Nutrition L1. Je n'écris pas de plans rigides — je bâtis des cadres basés sur les habitudes qui survivent à une semaine chargée, aux fêtes et à un vendredi à la microbrasserie.</span></p>
+        </details>
+        <details class="faq">
+          <summary><span data-en>What if I get injured outside the gym?</span><span data-fr>Et si je me blesse hors du gym ?</span><span class="pl">+</span></summary>
+          <p><span data-en>We pause, talk to your physio if you have one, and rewrite the next 4 weeks around what you can train. Almost no one takes a "full break" — we just shift focus.</span><span data-fr>On met sur pause, on parle à votre physio si vous en avez un, et on réécrit les 4 prochaines sem. autour de ce que vous pouvez entraîner. Presque personne ne prend une « pause complète » — on déplace le focus.</span></p>
+        </details>
+      </div>
+      <div>
+        <details class="faq">
+          <summary><span data-en>Where is the studio?</span><span data-fr>Où est le studio ?</span><span class="pl">+</span></summary>
+          <p><span data-en>5570 av. du Parc, Mile-End. Two minutes from Outremont metro. Free street parking after 6pm and on weekends.</span><span data-fr>5570 av. du Parc, Mile-End. Deux minutes du métro Outremont. Stationnement de rue gratuit après 18h et les fins de semaine.</span></p>
+        </details>
+        <details class="faq">
+          <summary><span data-en>Do you work with athletes?</span><span data-fr>Travaillez-vous avec des athlètes ?</span><span class="pl">+</span></summary>
+          <p><span data-en>Yes — currently coaching three competitive lifters and two CFL hopefuls. The off-season block is structured very differently from a general-pop client. We'll talk about it on intake.</span><span data-fr>Oui — j'entraîne actuellement trois lifteurs compétitifs et deux espoirs LCF. Le bloc hors-saison est structuré très différemment d'un client général. On en parle au bilan.</span></p>
+        </details>
+        <details class="faq">
+          <summary><span data-en>Can my insurance cover this?</span><span data-fr>Mon assurance peut-elle couvrir ?</span><span class="pl">+</span></summary>
+          <p><span data-en>Some private insurance plans (Manulife, Sun Life, Canada Life) reimburse personal training under "wellness" or "kinesiology" benefits. I'll provide receipts in the right format.</span><span data-fr>Certains plans privés (Manuvie, Sun Life, Canada Vie) remboursent l'entraînement privé sous « bien-être » ou « kinésiologie ». Je fournis les reçus au bon format.</span></p>
+        </details>
+        <details class="faq">
+          <summary><span data-en>Cancellation policy?</span><span data-fr>Politique d'annulation ?</span><span class="pl">+</span></summary>
+          <p><span data-en>24-hour notice, no charge. Anything less is the session cost — but life happens, and I look at intent over time, not single instances.</span><span data-fr>Préavis 24 h, aucun frais. Moins que ça est facturé — mais la vie arrive, et je regarde l'intention dans le temps, pas un cas isolé.</span></p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CONTACT =================== -->
+<section id="contact" class="contact" data-screen-label="09 Contact">
+  <div class="wrap">
+    <div class="eyebrow" style="color:rgba(255,255,255,0.7)">[ 08 / <span data-en>Get in touch</span><span data-fr>Contact</span> ]</div>
+    <h2 class="big" style="margin-top:14px">
+      <span data-en>Let's<br>get to <span class="em">work</span>.</span>
+      <span data-fr>Au<br><span class="em">boulot</span>.</span>
+    </h2>
+
+    <div class="contact-cta">
+      <a href="/cdn-cgi/l/email-protection#f8909d949497b88c919f97958c94d69b99" class="btn" style="background:#fff;color:var(--ink)">
+        <span data-en>Book free consult</span><span data-fr>Réserver consult. gratuite</span>
+        <span class="arr" style="background:var(--ink);color:#fff">↗</span>
+      </a>
+      <a href="tel:+15145551928" class="btn ghost" style="border-color:rgba(255,255,255,0.5);color:#fff">
+        +1 (514) 555-1928
+      </a>
+    </div>
+
+    <div class="contact-grid">
+      <div class="col">
+        <h5><span data-en>Studio</span><span data-fr>Studio</span></h5>
+        <p>5570 av. du Parc</p>
+        <p>Montréal, QC H2V 4H1</p>
+        <p style="opacity:0.7;margin-top:10px;font-size:14px"><span data-en>2 min from Outremont metro</span><span data-fr>2 min du métro Outremont</span></p>
+      </div>
+      <div class="col">
+        <h5><span data-en>Direct</span><span data-fr>Direct</span></h5>
+        <p><a href="/cdn-cgi/l/email-protection#98f0fdf4f4f7d8ecf1fff7f5ecf4b6fbf9"><span class="__cf_email__" data-cfemail="0c64696060634c78656b63617860226f6d">[email&#160;protected]</span></a></p>
+        <p><a href="https://instagram.com">@tigo.mtl</a></p>
+        <p style="opacity:0.7;margin-top:10px;font-size:14px"><span data-en>Replies within 24 hours</span><span data-fr>Réponse en 24 heures</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FOOTER =================== -->
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="name">TIGO<br><span class="em">/ mtl</span></div>
+        <p class="meta">
+          <span data-en>Personal training studio in Mile-End. Coaching humans, not bodies, since 2017.</span>
+          <span data-fr>Studio d'entraînement privé au Mile-End. On entraîne des humains, pas des corps, depuis 2017.</span>
+        </p>
+      </div>
+      <div>
+        <h6><span data-en>Programs</span><span data-fr>Programmes</span></h6>
+        <ul>
+          <li><a href="#programs"><span data-en>Solo private</span><span data-fr>Privé solo</span></a></li>
+          <li><a href="#programs"><span data-en>Body recomposition</span><span data-fr>Recompo corporelle</span></a></li>
+          <li><a href="#programs"><span data-en>Hybrid online</span><span data-fr>Hybride en ligne</span></a></li>
+          <li><a href="#programs"><span data-en>Athlete off-season</span><span data-fr>Hors-saison athlète</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h6><span data-en>Studio</span><span data-fr>Studio</span></h6>
+        <ul>
+          <li><a href="#about"><span data-en>About Tigo</span><span data-fr>À propos de Tigo</span></a></li>
+          <li><a href="#method"><span data-en>The method</span><span data-fr>La méthode</span></a></li>
+          <li><a href="#testimonials"><span data-en>Client results</span><span data-fr>Résultats clients</span></a></li>
+          <li><a href="#schedule"><span data-en>Book a session</span><span data-fr>Réserver</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h6><span data-en>Contact</span><span data-fr>Contact</span></h6>
+        <ul>
+          <li><a href="/cdn-cgi/l/email-protection#066e636a6a6946726f61696b726a286567"><span class="__cf_email__" data-cfemail="39515c555556794d505e56544d55175a58">[email&#160;protected]</span></a></li>
+          <li><a href="tel:+15145551928">+1 (514) 555-1928</a></li>
+          <li><a href="#">Instagram · @tigo.mtl</a></li>
+          <li><a href="#">TikTok · @tigo.mtl</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 Tigo MTL</span>
+      <span><span data-en>Made in Mile-End</span><span data-fr>Fait au Mile-End</span> · 45.5168°N · −73.5950°W</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Language toggle
+  const setLang = (l) => {
+    document.documentElement.lang = l;
+    document.querySelectorAll('.lang button').forEach(b => {
+      b.classList.toggle('on', b.dataset.setLang === l);
+    });
+    try { localStorage.setItem('lang', l); } catch(e){}
+  };
+  document.querySelectorAll('.lang button').forEach(b => {
+    b.addEventListener('click', () => setLang(b.dataset.setLang));
+  });
+  try {
+    const saved = localStorage.getItem('lang');
+    if (saved === 'fr') setLang('fr');
+  } catch(e){}
+
+  // Calendar interactivity (just toggling the selected day)
+  document.querySelectorAll('.sched-cal .day:not(.dim)').forEach(d => {
+    d.addEventListener('click', () => {
+      document.querySelectorAll('.sched-cal .day.sel').forEach(x => x.classList.remove('sel'));
+      d.classList.add('sel');
+    });
+  });
+  // Slot toggle
+  document.querySelectorAll('.slot:not(.taken)').forEach(s => {
+    s.addEventListener('click', () => {
+      document.querySelectorAll('.slot.on').forEach(x => x.classList.remove('on'));
+      s.classList.add('on');
+    });
+  });
+</script>
+
+</body>
+</html>
